@@ -1,14 +1,23 @@
 const redux = require("redux");
 const createStore = redux.legacy_createStore;
+const bindActionCreators = redux.bindActionCreators;
 
 //Action
 const CAKE_ORDERED = "CAKE_ORDERED";
+const CAKE_RESTOCKED = "CAKE_RESTOCKED";
 
 //Action creator
 function orderCake() {
   return {
     type: CAKE_ORDERED,
-    quantity: 1,
+    payload: 1,
+  };
+}
+
+function restockCake(qty = 1) {
+  return {
+    type: CAKE_RESTOCKED,
+    payload: qty,
   };
 }
 
@@ -25,6 +34,11 @@ const reducer = (state = initialState, action) => {
         ...state, //this prevents mutation of other properties(spread operator)
         numberOfCakes: state.numberOfCakes - 1,
       };
+    case CAKE_RESTOCKED:
+      return {
+        ...state,
+        numberOfCakes: state.numberOfCakes + action.payload,
+      };
     default:
       return state;
   }
@@ -38,9 +52,18 @@ const unsubscribe = store.subscribe(() => {
   console.log("updated state", store.getState());
 });
 
-store.dispatch(orderCake());
-store.dispatch(orderCake());
-store.dispatch(orderCake());
+// store.dispatch(orderCake());
+// store.dispatch(orderCake());
+// store.dispatch(orderCake());
+
+// store.dispatch(restockCake(3));
+
+const actions = bindActionCreators({ orderCake, restockCake }, store.dispatch);
+
+actions.orderCake();
+actions.orderCake();
+actions.orderCake();
+
+actions.restockCake(5);
 
 unsubscribe();
-store.dispatch(orderCake());

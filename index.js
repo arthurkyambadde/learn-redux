@@ -44,19 +44,8 @@ const initialIceCreamState = { numberOfIceCreams: 20 };
 
 //Reducer
 
-const reducer = (state = initialState, action) => {
+const IceCreamReducer = (state = initialIceCreamState, action) => {
   switch (action.type) {
-    case CAKE_ORDERED:
-      return {
-        ...state, //this prevents mutation of other properties(spread operator)
-        numberOfCakes: state.numberOfCakes - 1,
-      };
-    case CAKE_RESTOCKED:
-      return {
-        ...state,
-        numberOfCakes: state.numberOfCakes + action.payload,
-      };
-
     case ORDER_ICECREAM:
       return {
         ...state, //this prevents mutation of other properties(spread operator)
@@ -72,7 +61,7 @@ const reducer = (state = initialState, action) => {
   }
 };
 
-const reducer = (state = initialState, action) => {
+const cakeReducer = (state = initialCakeState, action) => {
   switch (action.type) {
     case CAKE_ORDERED:
       return {
@@ -85,16 +74,6 @@ const reducer = (state = initialState, action) => {
         numberOfCakes: state.numberOfCakes + action.payload,
       };
 
-    case ORDER_ICECREAM:
-      return {
-        ...state, //this prevents mutation of other properties(spread operator)
-        numberOfIceCreams: state.numberOfIceCreams - 1,
-      };
-    case RESTOCK_ICECREAM:
-      return {
-        ...state,
-        numberOfIceCreams: state.numberOfIceCreams + action.payload,
-      };
     default:
       return state;
   }

@@ -5,6 +5,8 @@ const bindActionCreators = redux.bindActionCreators;
 //Action
 const CAKE_ORDERED = "CAKE_ORDERED";
 const CAKE_RESTOCKED = "CAKE_RESTOCKED";
+const ORDER_ICECREAM = "ORDER_ICECREAM";
+const RESTOCK_ICECREAM = "RESTOCK_ICECREAM";
 
 //Action creator
 function orderCake() {
@@ -17,6 +19,19 @@ function orderCake() {
 function restockCake(qty = 1) {
   return {
     type: CAKE_RESTOCKED,
+    payload: qty,
+  };
+}
+
+function orderIcecream() {
+  return {
+    type: ORDER_ICECREAM,
+  };
+}
+
+function restockIceCream(qty = 1) {
+  return {
+    type: RESTOCK_ICECREAM,
     payload: qty,
   };
 }

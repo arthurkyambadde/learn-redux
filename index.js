@@ -93,4 +93,10 @@ actions.orderCake();
 
 actions.restockCake(5);
 
+actions.orderIcecream();
+actions.orderIcecream();
+actions.orderIcecream();
+
+actions.restockIceCream(6);
+
 unsubscribe();

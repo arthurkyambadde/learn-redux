@@ -23,9 +23,10 @@ function restockCake(qty = 1) {
   };
 }
 
-function orderIcecream() {
+function orderIcecream(qty = 1) {
   return {
     type: ORDER_ICECREAM,
+    payload: qty,
   };
 }
 
@@ -38,7 +39,7 @@ function restockIceCream(qty = 1) {
 
 //State
 
-const initialState = { numberOfCakes: 10, anotherProperty: 5 };
+const initialState = { numberOfCakes: 10, numberOfIceCreams: 20 };
 
 //Reducer
 
@@ -53,6 +54,17 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         numberOfCakes: state.numberOfCakes + action.payload,
+      };
+
+    case ORDER_ICECREAM:
+      return {
+        ...state, //this prevents mutation of other properties(spread operator)
+        numberOfIceCreams: state.numberOfIceCreams - 1,
+      };
+    case RESTOCK_ICECREAM:
+      return {
+        ...state,
+        numberOfIceCreams: state.numberOfIceCreams + action.payload,
       };
     default:
       return state;

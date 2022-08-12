@@ -85,7 +85,10 @@ const unsubscribe = store.subscribe(() => {
 
 // store.dispatch(restockCake(3));
 
-const actions = bindActionCreators({ orderCake, restockCake }, store.dispatch);
+const actions = bindActionCreators(
+  { orderCake, restockCake, orderIcecream, restockIceCream },
+  store.dispatch
+);
 
 actions.orderCake();
 actions.orderCake();
@@ -93,9 +96,9 @@ actions.orderCake();
 
 actions.restockCake(5);
 
-actions.orderIcecream();
-actions.orderIcecream();
-actions.orderIcecream();
+actions.orderIcecream(1);
+actions.orderIcecream(1);
+actions.orderIcecream(1);
 
 actions.restockIceCream(6);
 
